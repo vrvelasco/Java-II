@@ -10,7 +10,7 @@ public class MorseCodeMain
 		Converter myConverter = new Converter();
 		
 		// Welcome message
-		System.out.print("Welcome to Morse Code!\n\nEnter text to translate (-1 to exit): ");
+		System.out.print("Welcome to translator!\n\nEnter text to translate (-1 to exit): ");
 		String userStr = input.nextLine();
 	
 		do 

@@ -32,7 +32,7 @@ public class Converter
 		if (dotsAndDashes < other) // Mostly dots and dashes?
 			translation = convertToMorse(userChar);
 		else
-			translation = convertToEnglish(userStr.split("\\s+")); // Split into tokens using 1 or more spaces as the delimiter
+			translation = convertToEnglish(userStr); // Split into tokens using the delimiter
 		
 		return translation;
 	}
@@ -40,7 +40,7 @@ public class Converter
 	
 	private String convertToMorse(char[] userTokens)
 	{
-		String morseTranslation = "\nMorse: ";
+		String morseTranslation = "\nDetected language: English\n\n";
 		boolean found = false; // Was there a match?
 		
 		for (char c : userTokens) // Get single character from user's string
@@ -49,47 +49,58 @@ public class Converter
 				{
 					if (c == english[i]) // Matched an English element?
 					{
-						morseTranslation += morse[i] + SPACE;
+						morseTranslation += morse[i];
 						found = true;
 						break;
 					}
 					
 					if (c == ' ') // Matched a space?
-					{	morseTranslation += TRIPLE_SPACE;
+					{	morseTranslation += SPACE;
 						found = true;
 						break;
 					}
 				}
-				
+								
 				if (!found) // Nothing matched?
-					morseTranslation += UNKNOWN + SPACE;
+					morseTranslation += UNKNOWN;
 				
 				found = false; // Reset boolean
-			}
+
+				morseTranslation += SPACE; // Add space after For loop
+				}
 		
 		return morseTranslation;
 		}
 	
-	private String convertToEnglish(String[] userTokens)
+	private String convertToEnglish(String userStr)
 	{
-		String englishTranslation = "\nEnglish: ";
+		String[] tripleToken = userStr.trim().split(TRIPLE_SPACE); // Array of tokens in String separated by TRIPLE_SPACE
+		String englishTranslation = "\nDetected language: Morse code\n\n";
 		boolean found = false;
 		
-		for (String token : userTokens) // Get through tokens in String
+		for (String tokens : tripleToken) // Go through tokens in String separated by TRIPLE_SPACE
 		{
-			for (int i = 0; i < morse.length; i++) // Loop until there is a match
+			String[] singleToken = tokens.split(SPACE); // Array of tokens in String separated by SPACE
+			
+			for (String token : singleToken) // Go through tokens in String separated by SPACE
 			{
-				if (token.equals(morse[i])) // Matched a Morse Code element?
+				for (int i = 0; i < morse.length; i++) // Loop until there is a match
 				{
-					englishTranslation += english[i];
-					found = true;
-					break;
+					if (token.equals(morse[i])) // Matched a Morse Code element?
+					{
+						englishTranslation += english[i];
+						found = true;
+						break;
+					}	
 				}
-			}
+				
 				if (!found) // Nothing matched?
 					englishTranslation += UNKNOWN;
-			
+				
 				found = false; // Reset boolean
+			}
+			
+			englishTranslation += SPACE; // SPACE after loop, because it is the end of the word
 		}
 		
 		return englishTranslation;
