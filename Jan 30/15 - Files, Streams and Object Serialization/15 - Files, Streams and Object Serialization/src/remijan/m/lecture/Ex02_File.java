@@ -17,7 +17,7 @@ public class Ex02_File {
       System.out.printf("exists = %b%n", Files.exists(path));
       System.out.printf("isDirectory = %b%n", Files.isDirectory(path));
       System.out.printf("isRegularFile = %b%n", Files.isRegularFile(path));
-      System.out.printf("isReadable = %b%n", Files.isReadable(path));
+      System.out.printf("isReadable = %b%n", Files.isReadable(path)); // Permission
 
       // This blows up because the file doesn't exist
       // System.out.printf("size = %d%n", Files.size(path));

@@ -16,7 +16,7 @@ public class Ex03_Directory {
     // The Files object works with the Path object to tell you 
     // more about the existance and attributes of a directory
     // on the file system
-    Path projectDir = Paths.get(".").toAbsolutePath();
+    Path projectDir = Paths.get(".").toAbsolutePath(); // '.' = Yourself; ".." = Parent
     System.out.printf("projectDir = %s%n", projectDir);
     System.out.printf("isDirectory = %b%n", Files.isDirectory(projectDir));
 
@@ -25,7 +25,7 @@ public class Ex03_Directory {
       System.out.printf("%n");
       DirectoryStream<Path> children
           = Files.newDirectoryStream(projectDir);
-      for (Path p : children) {
+      for (Path p : children) { // Loop through contents
         System.out.printf("Child: %s%n", p.getFileName());
       }
     }
@@ -43,7 +43,8 @@ public class Ex03_Directory {
     // Filter with DirectoryStream.Filter
     {
       System.out.printf("%n");
-
+      
+      // Created filter
       class RegularFileFilter implements DirectoryStream.Filter<Path> {
         @Override
         public boolean accept(Path entry) throws IOException {
@@ -51,7 +52,7 @@ public class Ex03_Directory {
         }
       }
 
-      DirectoryStream<Path> children
+      DirectoryStream<Path> children             // Filter from above
           = Files.newDirectoryStream(projectDir, new RegularFileFilter());
       for (Path p : children) {
         System.out.printf("FILTER: %s%n", p.getFileName());

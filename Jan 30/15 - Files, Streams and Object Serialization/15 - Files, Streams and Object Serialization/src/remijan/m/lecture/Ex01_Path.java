@@ -10,11 +10,11 @@ public class Ex01_Path {
     
     // A Path object represents a file or directory on the file system.
     // The file or directory doesn't need to exist!
-    Path path = Paths.get("WOW.txt");
-    System.out.printf("FileName = %s%n", path.getFileName());
-    System.out.printf("isAbsolute = %b%n", path.isAbsolute());
-    System.out.printf("toAbsolute = %s%n", path.toAbsolutePath());
-    System.out.printf("toUri = %s%n", path.toUri());
+    Path path = Paths.get("WOW.txt"); // Directory or file
+    System.out.printf("FileName = %s%n", path.getFileName()); // Guesses file name
+    System.out.printf("isAbsolute = %b%n", path.isAbsolute()); // Guess if fully qualified path (root)
+    System.out.printf("toAbsolute = %s%n", path.toAbsolutePath()); // Guesses where the project directory is
+    System.out.printf("toUri = %s%n", path.toUri()); // URL for browser
 
     Path absolute = Paths.get(path.toUri());
     System.out.printf("isAbsolute = %b%n", absolute.isAbsolute());
