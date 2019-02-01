@@ -1,5 +1,7 @@
 package velasco.v;
 
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
@@ -19,48 +21,89 @@ public class Commands
 				       "Show list of commands","List contents of directory", "Show contents of file", "Exit the shell");
 	}
 	
-	public void listDir()
+	public void listDir() throws Exception
 	{
-		Path p = Paths.get(".").toAbsolutePath();
-		System.out.printf("%nDirectory of \"%s\"%n", p);
-		//DirectoryStream<p> = ;
+		Path path = Paths.get(".").toAbsolutePath();
+		System.out.printf("Directory of \"%s\"%n", path);
 		
-		/*for (Path d : dir)
+		if (Files.isDirectory(path)) 
 		{
-			System.out.printf("%b %d %s %n", p.isDirectory() ? 'd' : ' ', // GET FILE SIZE, // GET NAME);
-		} */
+            DirectoryStream<Path> children = Files.newDirectoryStream(path);
+           
+            for (Path p : children)
+            {
+            	if (Files.isRegularFile(p))
+            		System.out.printf("%-5s%,15d %-20s%n", Files.isDirectory(p) ? "d" : " ", Files.size(p), p.getFileName());
+            	else
+            		System.out.printf("%-20s %-20s%n", Files.isDirectory(p) ? "d" : " ", p.getFileName());
+            }
+            System.out.printf("%n");
+        } 
+		else
+			System.out.println("ERROR: Path is not a directory!!!!!!!!!!");
+
 	}
 	
-	public void listDirPath(String userInput)
+	public void listDirPath(String userInput) throws Exception
 	{
-		/*
-		// Get path from the user's input
-		String[] dirPath = userInput.split(" ");
+		// Convert userInput to charArray
+		char[] pathArray = userInput.toCharArray();
+				
+		// Get path from the user's input after removing "dir "
+		Path path = Paths.get(String.valueOf(pathArray, 4, (pathArray.length - 4)));
 		
-		// Element 1 is the path from user (element 0 should contain "dir")
-		Path p = dirPath[1];
-		*/
+		System.out.printf("Directory of \"%s\"%n", path);
+		
+		if (Files.isDirectory(path)) 
+		{
+            DirectoryStream<Path> children = Files.newDirectoryStream(path);
+           
+            for (Path p : children)
+            {
+            	if (Files.isRegularFile(p))
+            		System.out.printf("%-5s%,15d %-20s%n", Files.isDirectory(p) ? "d" : " ", Files.size(p), p.getFileName());
+            	else
+            		System.out.printf("%-20s %-20s%n", Files.isDirectory(p) ? "d" : " ", p.getFileName());
+            }
+            System.out.printf("%n");
+        } 
+
 	}
 	
-	public void showFile()
+	public void showFile(String userInput) throws Exception
 	{
-		/*
-		Scanner file = new Scanner(filePath[1]);
+		// Convert userInput to charArray
+		char[] pathArray = userInput.toCharArray();
 		
-		// Get path from the user's input
-		String[] filePath = userInput.split(" ");
+		// Get path from the user's input after removing "show "
+		Path path = Paths.get(String.valueOf(pathArray, 5, (pathArray.length - 5)));
 		
-		// Element 1 is the path from user (element 0 should contain "show")
-		Path p = filePath[1];
-		
-		// Show contents of file
-		System.out.printf("SHOW: \"%s\"%n", //PATH);
-		
-		while (file.hasNext())
+		// Exists?
+		if (!Files.exists(path)) 
 		{
-			String line = file.nextLine(); 
-			System.out.println(line\n);
+            System.out.printf("ERROR: Path does not exit: \"%s\"", path);
 		}
-		*/
+		else
+		{
+			// File?
+			if (Files.isRegularFile(path))
+			{
+				System.out.printf("Contents of \"%s\"%n", path);
+				
+				try (Scanner fileReader = new Scanner(path))
+				{
+					while (fileReader.hasNext()) 
+					{
+						String line = fileReader.nextLine();
+						System.out.println(line);
+					}
+				
+					System.out.println();
+				}
+			}
+		
+			else
+				System.out.printf("ERROR: Path is not a file: \"%s\"", path);
+		}
 	}
 }

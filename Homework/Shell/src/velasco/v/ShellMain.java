@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class ShellMain {
 
-	public static void main(String[] args) 
+	public static void main(String[] args) throws Exception
 	{
 		Scanner input = new Scanner(System.in);
 		Commands myCommands = new Commands();
@@ -34,11 +34,11 @@ public class ShellMain {
 				System.out.println("ERROR: The [file] parameter is missing. Execute 'help' for more information\n");
 			// Show contents of file
 			else if (userInput.contains("show"))
-				myCommands.showFile();
+				myCommands.showFile(userInput);
 			//Unknown command?
 			else 
 			{
-				System.out.printf("Unknown command \"%s\"%n",userInput );
+				System.out.printf("%nUnknown command \"%s\"%n",userInput );
 				myCommands.helpMenu();
 			}
 			
