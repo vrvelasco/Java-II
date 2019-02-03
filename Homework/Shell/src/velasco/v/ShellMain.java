@@ -11,7 +11,7 @@ public class ShellMain {
 		String userInput = "";
 		
 		// Welcome message
-		System.out.println("Welcome to Shell!\n");
+		System.out.println("Welcome to Shell!");
 		
 		// Display prompt
 		userInput = myCommands.displayPrompt(input);
@@ -31,7 +31,7 @@ public class ShellMain {
 				myCommands.listDirPath(userInput);
 			// Show command missing parameter?
 			else if (userInput.equalsIgnoreCase("show"))
-				System.out.println("ERROR: The [file] parameter is missing. Execute 'help' for more information\n");
+				System.out.println("\nERROR: The [file] parameter is missing. Execute 'help' for more information");
 			// Show contents of file
 			else if (userInput.contains("show"))
 				myCommands.showFile(userInput);
