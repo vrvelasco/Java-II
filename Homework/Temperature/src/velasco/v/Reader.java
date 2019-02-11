@@ -11,6 +11,8 @@ public class Reader
 	private int warmest = 0;
 	private int smallest = 0;
 	private int largest = 0;
+	private int lines = 0;
+	private int frequency = 0;
 	List<Integer> tempList;
 	Set<Integer> setList;
 	
@@ -21,29 +23,30 @@ public class Reader
 	
 	public int getLines() // How many entries?
 	{
-		return tempList.size();
+		lines = tempList.size();
+		return lines;
 	}
 	
 	public int getColdest() // Lowest temperature?
 	{
-		return Collections.min(tempList);
+		coldest = Collections.min(tempList);
+		return coldest;
 	}
 	
 	public int getWarmest() // Highest temperature?
 	{
-		return Collections.max(tempList);
+		warmest = Collections.max(tempList);
+		return warmest;
 	}
 	
-	public int getAverage() // Average temperature?
+	public double getAverage() // Average temperature?
 	{
-		int sum =0;
+		double sum = 0;
 		
 		for (int temp : tempList)
-		{
 			sum += temp;
-		}
 		
-		return sum / tempList.size();
+		return sum / lines;
 	}
 	
 	public int getSmallest() // Smallest, least frequent
@@ -56,11 +59,11 @@ public class Reader
 		return largest;
 	}
 	
-	public void processData() throws Exception
+	public void processData() throws Exception // Gets temperature values from file and adds to List
 	{
 		Path tempFile = Paths.get("temperatures.dat"); // Get path to file
 		
-		try (Scanner fileReader = new Scanner(tempFile))
+		try (Scanner fileReader = new Scanner(tempFile)) // Auto close
 		{
 			while (fileReader.hasNext()) //  Loop while file contains data
 			{
@@ -68,15 +71,52 @@ public class Reader
 			}
 		}
 		
-		//Collections.sort(tempList);
 		setList = new TreeSet<>(tempList); // Duplicate entries not allowed.
 	}
 	
-	public void printData()
+	public void printData() // Prints unique values and their frequency
 	{
 		for (int temp : setList)
+			System.out.printf("%4d %5d%n", temp, Collections.frequency(tempList, temp));
+	}
+	
+	public void findLeastFrequent()
+	{
+		boolean found = false;
+		
+		for (int temp : setList)
 		{
-			System.out.printf("%4s%6s%n", temp, Collections.frequency(tempList, temp));
+			int count = Collections.frequency(tempList, temp);
+		
+			if (!found)
+			{
+				if (count <= frequency && temp < warmest)
+				{
+					smallest = temp;
+					frequency = count;
+					
+					if (frequency == 1)
+						found = true;
+				}
+			}
+			/*if (frequency == 1) // Found the temperature. No need to check the rest
+				break;*/
+		}
+	}
+	
+	public void findMostFrequent()
+	{
+		frequency = 0;
+		
+		for (int temp : setList)
+		{
+			int count = Collections.frequency(tempList, temp);
+			
+			if (count > frequency && temp > coldest)
+			{
+				largest = temp;
+				frequency = count;
+			}
 		}
 	}
 }
