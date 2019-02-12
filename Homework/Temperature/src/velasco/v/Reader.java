@@ -86,11 +86,11 @@ public class Reader
 		
 		for (int temp : setList)
 		{
-			int count = Collections.frequency(tempList, temp);
-		
 			if (!found)
 			{
-				if (count <= frequency && temp < warmest)
+				int count = Collections.frequency(tempList, temp);
+				
+				if (count <= frequency && temp < getWarmest())
 				{
 					smallest = temp;
 					frequency = count;
@@ -112,7 +112,7 @@ public class Reader
 		{
 			int count = Collections.frequency(tempList, temp);
 			
-			if (count > frequency && temp > coldest)
+			if (count > frequency && temp > getColdest())
 			{
 				largest = temp;
 				frequency = count;
