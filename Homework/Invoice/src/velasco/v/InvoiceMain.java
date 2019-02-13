@@ -10,7 +10,7 @@ public class InvoiceMain
 		// Welcome message
 		System.out.println("Welcome to Invoice!\n");
 
-		int choice = myReader.printMenu(); // Display message and get selection
+		int choice = myPrinter.printMenu(); // Display message and get selection
 		
 		while (choice != 6) // Loop until EXIT is selected
 		{
@@ -36,7 +36,7 @@ public class InvoiceMain
 				break;
 			}
 			
-			choice = myReader.printMenu(); // Show menu again and get selection
+			choice = myPrinter.printMenu(); // Show menu again and get selection
 		}
 		
 		// Exit message
