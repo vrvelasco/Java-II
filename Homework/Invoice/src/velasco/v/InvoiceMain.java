@@ -3,9 +3,10 @@ package velasco.v;
 public class InvoiceMain 
 {
 
-	public static void main(String[] args) 
+	public static void main(String[] args) throws Exception
 	{
 		Printer myPrinter = new Printer();
+		myPrinter.getData(); // Fill List
 		
 		// Welcome message
 		System.out.println("Welcome to Invoice!\n");
