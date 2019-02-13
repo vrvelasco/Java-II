@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Printer 
 {
-	
+	Scanner input = new Scanner(System.in);
 	Scanner fileReader = new Scanner(System.in);
 	
 	public void rawData()
@@ -30,5 +30,30 @@ public class Printer
 	public void summary()
 	{
 		System.out.println("\nSUMMARY\n");
+	}
+	
+	public int printMenu() // Displays menu
+	{
+		int selection;
+		
+		// Menu
+		System.out.print("MAIN MENU\n"
+			       + "  1. Show raw data\n"
+			       + "  2. Show invoices\n"
+			       + "  3. Show invoices by DEPT\n"
+			       + "  4. Show invoices by QTY\n"
+			       + "  5. Show department summary\n"
+			       + "  6. EXIT\n\nSelection: ");
+		
+		try // Number?
+		{
+			selection = Integer.parseInt(input.nextLine());	
+		}
+		catch (NumberFormatException e)
+		{
+			selection = -1; // Error
+		}
+			
+		return selection;
 	}
 }
