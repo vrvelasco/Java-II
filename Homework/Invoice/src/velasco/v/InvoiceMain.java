@@ -33,7 +33,7 @@ public class InvoiceMain
 				myPrinter.summary();
 				break;
 			default: // Something else
-				System.out.println("\nInvalid choice: Please try again.\n");
+				System.out.println("\nOops, try again.\n");
 				break;
 			}
 			
