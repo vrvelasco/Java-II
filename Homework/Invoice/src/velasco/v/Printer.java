@@ -20,51 +20,39 @@ public class Printer
 	{
 		System.out.println("\nInvoices by Default\n");
 		
-		// Columns
-		System.out.printf("%-4s %-15s %-30s %4s %8s%n%s %s %s %s %s%n",
-						  "ID", "DEPARTMENT", "DESCRIPTION", "QTY", "PRICE",
-						  "====","===============", "==============================", "====", "========");
+		printColumns();
 		
 		// Output
 		invoiceList.stream()
-				   .forEach(e -> System.out.printf("%-4d %-15s %-30s %4d %8.2f%n",
-						    e.getId(), e.getDept(), e.getDescription(), e.getQty(), e.getPrice()));
+		           .map(i -> i)
+				   .forEach(i -> System.out.printf("%-4d %-15s %-30s %4d %8.2f%n",
+						    i.getId(), i.getDept(), i.getDescription(), i.getQty(), i.getPrice()));
 	}
 	
 	public void deptInvoices()
 	{
 		System.out.println("\nInvoices by Department\n");
 		
-		// Columns
-		System.out.printf("%-4s %-15s %-30s %4s %8s%n%s %s %s %s %s%n",
-						  "ID", "DEPARTMENT", "DESCRIPTION", "QTY", "PRICE",
-						  "====","===============", "==============================", "====", "========");
-		
-		// Sort by Department
-		invoiceList.sort((a,b) -> a.getDept().compareTo(b.getDept()));
+		printColumns();
 		
 		// Output
 		invoiceList.stream()
-				   .forEach(e -> System.out.printf("%-4d %-15s %-30s %4d %8.2f%n",
-						    e.getId(), e.getDept(), e.getDescription(), e.getQty(), e.getPrice()));
+				   .map(d -> d).sorted((d1, d2) -> d1.getDept().compareTo(d2.getDept()))
+				   .forEach(d -> System.out.printf("%-4d %-15s %-30s %4d %8.2f%n",
+						    d.getId(), d.getDept(), d.getDescription(), d.getQty(), d.getPrice()));
 	}
 	
 	public void qtyInvoices()
 	{
 		System.out.println("\nInvoices by Quantity\n");
 		
-		// Columns
-		System.out.printf("%-4s %-15s %-30s %4s %8s%n%s %s %s %s %s%n",
-						  "ID", "DEPARTMENT", "DESCRIPTION", "QTY", "PRICE",
-						  "====","===============", "==============================", "====", "========");
-		
-		// Sort by QTY
-		invoiceList.sort((a,b) -> a.getQty().compareTo(b.getQty()));
+		printColumns();
 		
 		// Output
 		invoiceList.stream()
-				   .forEach(e -> System.out.printf("%-4d %-15s %-30s %4d %8.2f%n",
-						    e.getId(), e.getDept(), e.getDescription(), e.getQty(), e.getPrice()));
+				   .map(q -> q).sorted((q1, q2) -> q1.getQty().compareTo(q2.getQty()))
+				   .forEach(q -> System.out.printf("%-4d %-15s %-30s %4d %8.2f%n",
+						    q.getId(), q.getDept(), q.getDescription(), q.getQty(), q.getPrice()));
 	}
 	
 	public void summary()
@@ -143,5 +131,13 @@ public class Printer
 		                }
 		            }
 		 }
+	}
+	
+	public void printColumns()
+	{
+		// Columns
+				System.out.printf("%-4s %-15s %-30s %4s %8s%n%s %s %s %s %s%n",
+								  "ID", "DEPARTMENT", "DESCRIPTION", "QTY", "PRICE",
+								  "====","===============", "==============================", "====", "========");
 	}
 }
