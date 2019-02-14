@@ -1,0 +1,7 @@
+1,rita,red
+2,oscar,orange
+3,yet,yellow
+4,gary,green
+5,betty,blue
+6,ivan,indigo
+7,vivian,violet

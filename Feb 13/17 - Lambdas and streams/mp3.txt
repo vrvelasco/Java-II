@@ -1,0 +1,9 @@
+1,Pop,Christina Aguilera,400,.99
+2,Pop,Justin Bieber,245,1.29
+3,Pop,Lady Gaga,389,.97
+4,Country,Taylor Swift,1489,.98
+5,Country,Blake Shelton,432,1.09
+6,Country,Rascal Flatts,123,.79
+7,Rock,AC/DC,81,.55
+8,Rock,Guns N' Roses,42,.55
+
