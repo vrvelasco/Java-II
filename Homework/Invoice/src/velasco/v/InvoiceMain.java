@@ -9,7 +9,7 @@ public class InvoiceMain
 		myPrinter.getData(); // Fill List
 		
 		// Welcome message
-		System.out.println("Welcome to Invoice!\n");
+		System.out.println("Welcome to Invoice!");
 
 		int choice = myPrinter.printMenu(); // Display message and get selection
 		
@@ -33,7 +33,7 @@ public class InvoiceMain
 				myPrinter.summary();
 				break;
 			default: // Something else
-				System.out.println("\nOops, try again.\n");
+				System.out.println("\nOops, try again.");
 				break;
 			}
 			

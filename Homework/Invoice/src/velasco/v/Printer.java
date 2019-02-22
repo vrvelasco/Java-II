@@ -1,7 +1,9 @@
 package velasco.v;
 
 import java.nio.file.Paths;
+import java.text.NumberFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Printer
 {
@@ -25,21 +27,20 @@ public class Printer
 		// Output
 		invoiceList.stream()
 		           .map(i -> i)
-				   .forEach(i -> System.out.printf("%-4d %-15s %-30s %4d %8.2f%n",
-						    i.getId(), i.getDept(), i.getDescription(), i.getQty(), i.getPrice()));
+				   .forEach(i -> System.out.printf("%-4d %-15s %-30s %4d %8s%n",
+						    i.getId(), i.getDept(), i.getDescription(), i.getQty(), NumberFormat.getCurrencyInstance().format(i.getPrice())));
 	}
 	
 	public void deptInvoices()
 	{
 		System.out.println("\nInvoices by Department\n");
 		
-		printColumns();
-		
+		printColumns();		
 		// Output
 		invoiceList.stream()
 				   .map(d -> d).sorted((d1, d2) -> d1.getDept().compareTo(d2.getDept()))
-				   .forEach(d -> System.out.printf("%-4d %-15s %-30s %4d %8.2f%n",
-						    d.getId(), d.getDept(), d.getDescription(), d.getQty(), d.getPrice()));
+				   .forEach(d -> System.out.printf("%-4d %-15s %-30s %4d %8s%n",
+						    d.getId(), d.getDept(), d.getDescription(), d.getQty(), NumberFormat.getCurrencyInstance().format(d.getPrice())));
 	}
 	
 	public void qtyInvoices()
@@ -51,13 +52,29 @@ public class Printer
 		// Output
 		invoiceList.stream()
 				   .map(q -> q).sorted((q1, q2) -> q1.getQty().compareTo(q2.getQty()))
-				   .forEach(q -> System.out.printf("%-4d %-15s %-30s %4d %8.2f%n",
-						    q.getId(), q.getDept(), q.getDescription(), q.getQty(), q.getPrice()));
+				   .forEach(q -> System.out.printf("%-4d %-15s %-30s %4d %8s%n",
+						    q.getId(), q.getDept(), q.getDescription(), q.getQty(), NumberFormat.getCurrencyInstance().format(q.getPrice())));
 	}
 	
 	public void summary()
 	{
-		System.out.println("\n*** SUMMARY ***\n\n// TODO");
+		System.out.println("\nDepartment Summary\n");
+		
+		Map<String, List<Invoice>> byDepartment = invoiceList.stream()
+            .collect(Collectors.groupingBy(i -> i.getDept()));
+
+		byDepartment.forEach((department, sales) -> {
+            System.out.printf("%s%n", department); // Print department
+            // Print total items and sales
+            System.out.printf("  Sold: %4d  Total: %10s%n" 
+                , sales.stream().mapToInt(s -> s.getQty()).sum()
+                , NumberFormat.getCurrencyInstance().format(  // Wrap with NumberFormat to get nice currency value
+                    sales.stream().mapToDouble(s -> s.getQty() * s.getPrice()).sum()
+                )
+            );                
+        }
+    );
+
 	}
 	
 	public int printMenu() // Displays menu
