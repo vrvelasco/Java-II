@@ -1,14 +1,15 @@
 package velasco.v;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class RecursionMain 
-{
+{	
+	static int counter = 1; // For the line count
+	static List<String> anagrams; // Holds the anagrams
 
 	public static void main(String[] args) 
 	{
 		Scanner input = new Scanner(System.in);
-		Anagram myAnagram = new Anagram();
 		
 		// Welcome message and get first word
 		System.out.println("Welcome to anagram!");
@@ -16,16 +17,25 @@ public class RecursionMain
 		
 		// Loop until "-1" is entered
 		while (!userStr.equals("-1"))
-		{
-			myAnagram.renameMethod(userStr);
+		{	
+			// Instantiate list
+			anagrams = new LinkedList<>();
+			
+			// Start recursion
+			anagram("", userStr, anagrams);
+			
+			// Lambda and Stream
+			anagrams.stream().forEach(x -> System.out.printf("%d\t%s%n", counter++, x));
 			
 			// Loop again?
 			userStr = displayMenu(input);
+			
+			// Reset line counter
+			counter = 1;
 		}
 		
 		// Good bye message
 		System.out.print("\nGood bye!");
-
 	}
 	
 	public static String displayMenu(Scanner input)
@@ -34,5 +44,26 @@ public class RecursionMain
 				
 		return input.nextLine();
 	}
-
+	
+	public static void anagram(String prefix, String userStr, List<String> list)
+	{		
+		String x = "", y = "", z = "";
+		
+		if (userStr.length() <= 1) // Base case
+		{ 
+			list.add(prefix + userStr);
+		}
+		else
+		{			
+			for (int i = 0; i < userStr.length(); i++)
+			{
+				x = userStr.substring(0, i);
+				y = userStr.substring(i, i + 1);
+				z = userStr.substring(i + 1);
+								
+				// Recursion
+				anagram(prefix + y, x + z, list);
+			}
+		}
+	}
 }
