@@ -10,7 +10,7 @@ public class MyRunnable implements Runnable {
     // an asynchronous manner in its own thread.  You must override
     // the #run() method an put your code here.  However, remember,
     // you do NOT directly call the #run() method.  After an instance
-    // of MyThread is created, you call the #start() method to start
+    // of MyThread is created, you call the #start() method to star
     // a new asynchronous thread.  #start() will automatically call
     // the #run() method for you.
     @Override
