@@ -1,42 +1,72 @@
 package velasco.v;
 
-// Fig. 23.11: Consumer.java
-// Consumer with a run method that loops, reading 10 values from buffer.
-
 import java.security.SecureRandom;
 
 public class Consumer implements Runnable 
 {
-	private static final SecureRandom generator = new SecureRandom();
-	private final SynchronizedBuffer sharedLocation; // reference to shared object
+    protected Deck deck;
+	Integer[] cards = { -1, -1 }; // Holds the two cards
+	public static String[] value = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" }; // Possible card Values
+	String winner = ""; // For displaying the winner
+	
 
-	// constructor
-	public Consumer(SynchronizedBuffer sharedLocation) 
-	{
-		this.sharedLocation = sharedLocation;
-	}
+    public Consumer(Deck deck) 
+    {
+        this.deck = deck;
+    }
 
-	// read sharedLocation's value 10 times and sum the values
-	@Override
-	public void run() 
-	{
-		int sum = 0;
+    @Override
+    public void run() 
+    {
+        SecureRandom random = new SecureRandom();
 
-		for (int count = 1; count <= 10; count++) 
-		{
-			// sleep 1 to 4 seconds, read value from buffer and add to sum
-			try 
-			{
-				Thread.sleep(1000 * (generator.nextInt(3) + 1));
-				sum += sharedLocation.blockingGet();
-				System.out.printf("\t\t\t%2d%n", sum);
-			}
-			catch (InterruptedException exception) 
-			{
-				Thread.currentThread().interrupt();
-			}
-		}
-
-		System.out.printf("%n%s %d%n%s%n", "Consumer read values totaling", sum, "Terminating Consumer");
-	}
+    	while (true) 
+    	{
+            try 
+            {
+            		Integer consumed = deck.consumeValue();
+            		playGame(consumed);
+            	
+                Thread.sleep(1000 * (random.nextInt(4) + 1));
+            } catch (InterruptedException e) 
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    private void playGame(int consumed)
+    {
+    	if (cards[0] == -1) // First card empty?
+        {
+        	cards[0] = consumed;
+        }
+        else if (cards[1] == -1) // Second card empty?
+        {
+        	cards[1] = consumed;
+        }
+        else // Both cards available
+        {
+        	if (cards[0] > cards[1]) // First card is higher
+        	{
+        		winner = "Winner is Card 1.";
+        	}
+        	else if (cards[0] < cards[1]) // Second card is higher
+        	{
+        		winner = "Winner is Card 2.";
+        	}
+        	else // Card values are the same
+        	{
+        		winner = "Cards tie!";
+        	}
+        	
+        	// Print outcome of game played
+        	System.out.printf("%n\tPLAY GAME%n "
+        			+ "\tCard 1 is \"%s\", Card 2 is \"%s\". %s %n%n", value[cards[0]], value[cards[1]], winner);
+        	
+        	// Reset placeholder
+        	cards[0] = -1;
+        	cards[1] = -1;
+        }
+    }
 }
