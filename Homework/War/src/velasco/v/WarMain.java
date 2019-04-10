@@ -19,6 +19,5 @@ public class WarMain
         
         System.out.printf("Consumer has started running%n%n");
         pool.execute(new Consumer(deck)); // Consumer will get from store
-        pool.execute(new Consumer(deck)); // Consumer will get from store
     }
 }

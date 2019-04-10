@@ -41,12 +41,14 @@ public class Consumer implements Runnable
         {
         	cards[0] = consumed;
         }
-        else if (cards[1] == -1) // Second card empty?
-        {
-        	cards[1] = consumed;
-        }
-        else // Both cards available
-        {
+        else 
+        	if (cards[1] == -1) // Second card empty?
+        	{
+        		cards[1] = consumed;
+        	}
+
+    	if (cards[0] != -1 && cards[1] != -1)
+    	{
         	if (cards[0] > cards[1]) // First card is higher
         	{
         		winner = "Winner is Card 1.";
