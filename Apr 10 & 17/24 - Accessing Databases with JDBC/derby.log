@@ -1,0 +1,22 @@
+----------------------------------------------------------------
+Tue Apr 09 19:03:04 CDT 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance a816c00e-016a-048e-204a-00000f8b4a10 
+on database directory D:\Documents\Academia\SWIC\CIS287\Lecture workspace\Projects\24 - Accessing Databases with JDBC\db with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@277050dc 
+Loaded from file:/D:/Documents/Academia/SWIC/CIS287/Lecture%20workspace/Projects/24%20-%20Accessing%20Databases%20with%20JDBC/derby.jar
+java.vendor=Azul Systems, Inc.
+java.runtime.version=11.0.2+7-LTS
+user.dir=D:\Documents\Academia\SWIC\CIS287\Lecture workspace\Projects\24 - Accessing Databases with JDBC
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+Tue Apr 09 19:03:05 CDT 2019 Thread[main,5,main] (XID = 246), (SESSIONID = 0), (DATABASE = D:\Documents\Academia\SWIC\CIS287\Lecture workspace\Projects\24 - Accessing Databases with JDBC\.\db), (DRDAID = null), Committing
+Tue Apr 09 19:03:05 CDT 2019 Thread[main,5,main] (XID = 246), (SESSIONID = 0), (DATABASE = D:\Documents\Academia\SWIC\CIS287\Lecture workspace\Projects\24 - Accessing Databases with JDBC\.\db), (DRDAID = null), Rolling back
+Tue Apr 09 19:03:05 CDT 2019 Thread[main,5,main] (XID = 247), (SESSIONID = 1), (DATABASE = D:\Documents\Academia\SWIC\CIS287\Lecture workspace\Projects\24 - Accessing Databases with JDBC\.\db), (DRDAID = null), Committing
+Tue Apr 09 19:03:05 CDT 2019 Thread[main,5,main] (XID = 248), (SESSIONID = 1), (DATABASE = D:\Documents\Academia\SWIC\CIS287\Lecture workspace\Projects\24 - Accessing Databases with JDBC\.\db), (DRDAID = null), Begin compiling prepared statement:  select       id      ,address1      ,address2      ,city      ,state      ,zip_code      ,created_on  from       address  :End prepared statement
+Tue Apr 09 19:03:05 CDT 2019 Thread[main,5,main] (XID = 248), (SESSIONID = 1), (DATABASE = D:\Documents\Academia\SWIC\CIS287\Lecture workspace\Projects\24 - Accessing Databases with JDBC\.\db), (DRDAID = null), End compiling prepared statement:  select       id      ,address1      ,address2      ,city      ,state      ,zip_code      ,created_on  from       address  :End prepared statement
+Tue Apr 09 19:03:05 CDT 2019 Thread[main,5,main] (XID = 248), (SESSIONID = 1), (DATABASE = D:\Documents\Academia\SWIC\CIS287\Lecture workspace\Projects\24 - Accessing Databases with JDBC\.\db), (DRDAID = null), Executing prepared statement:  select       id      ,address1      ,address2      ,city      ,state      ,zip_code      ,created_on  from       address  :End prepared statement
+Tue Apr 09 19:03:05 CDT 2019 Thread[main,5,main] (XID = 248), (SESSIONID = 1), (DATABASE = D:\Documents\Academia\SWIC\CIS287\Lecture workspace\Projects\24 - Accessing Databases with JDBC\.\db), (DRDAID = null), Committing
+Tue Apr 09 19:03:05 CDT 2019 Thread[main,5,main] (XID = 248), (SESSIONID = 1), (DATABASE = D:\Documents\Academia\SWIC\CIS287\Lecture workspace\Projects\24 - Accessing Databases with JDBC\.\db), (DRDAID = null), Committing
+Tue Apr 09 19:03:05 CDT 2019 Thread[main,5,main] (XID = 248), (SESSIONID = 1), (DATABASE = D:\Documents\Academia\SWIC\CIS287\Lecture workspace\Projects\24 - Accessing Databases with JDBC\.\db), (DRDAID = null), Rolling back
