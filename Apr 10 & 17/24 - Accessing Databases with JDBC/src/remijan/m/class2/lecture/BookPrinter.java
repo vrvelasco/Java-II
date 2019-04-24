@@ -11,8 +11,8 @@ public class DataPrinter {
             -> System.out.printf(
                 "%d\t %s\t %s\t", // %b\t %f\t %s\n",
                 b.getId(),
-                b.getAuthor(),
-                b.getTitle(),
+                b.getFirst(),
+                b.getLast(),
                 //b.getBestSeller(),
                 //b.getPrice().doubleValue(),
                // b.getPublicationDate()
