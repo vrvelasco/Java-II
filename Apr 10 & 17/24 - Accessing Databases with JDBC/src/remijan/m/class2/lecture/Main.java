@@ -10,22 +10,22 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        System.out.printf("Welcome to Book database\n\n");
+        System.out.printf("Welcome to Names database\n\n");
         
         Scanner scanner 
             = new Scanner(System.in);
         
-        BookPath    bookPath = new BookPath();
-        BookHandler bookHandler = new BookHandler(bookPath);
-        BookPrinter bookPrinter = new BookPrinter();
+        DataPath    dataPath = new DataPath();
+        DataHandler dataHandler = new DataHandler(DataPath);
+        DataPrinter dataPrinter = new DataPrinter();
 
         
         //
         // Print the book table
         //
-        List<Book> books
-            = bookHandler.findBooks();
-        bookPrinter.print(books);
+        List<Names> names
+            = dataHandler.findNames();
+        dataPrinter.print(names);
 
         //
         // Enter data for a new book
