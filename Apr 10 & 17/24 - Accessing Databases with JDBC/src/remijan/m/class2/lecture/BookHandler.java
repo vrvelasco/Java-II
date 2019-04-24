@@ -11,12 +11,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.StringJoiner;
 
-public class BookHandler {
+public class DataHandler {
     
-    private BookPath path;
+    private dataPath path;
     private Connection conn;
 
-    public BookHandler(BookPath path) throws Exception {
+    public DataHandler(dataPath path) throws Exception {
         // Store the path
         this.path = path;
         
@@ -47,19 +47,19 @@ public class BookHandler {
             System.out.printf("Database already initialized%n");
         } else {
             StringJoiner sj
-                = new StringJoiner(",", "create table books (", ")");
+                = new StringJoiner(",", "create table names (", ")");
             sj.add(" id                integer ");
-            sj.add(" title             varchar(100) ");
-            sj.add(" author            varchar(100) ");
-            sj.add(" publication_date  date ");
-            sj.add(" price             decimal(5,2) ");
-            sj.add(" amz_bestseller    boolean ");
+            sj.add(" first             varchar(100) ");
+            sj.add(" last            varchar(100) ");
+           // sj.add(" publication_date  date ");
+           // sj.add(" price             decimal(5,2) ");
+           // sj.add(" amz_bestseller    boolean ");
 
             try (
                 Statement stmt = conn.createStatement();
             ) {
                 stmt.execute(sj.toString());
-                System.out.printf("BOOKS table Created%n");
+                System.out.printf("Names table Created%n");
             }
         }
     }
@@ -70,13 +70,13 @@ public class BookHandler {
         StringBuilder sp = new StringBuilder();
         sp.append(" select \n");
         sp.append("    id  \n");
-        sp.append("   ,title   \n");
-        sp.append("   ,author    \n");
-        sp.append("   ,publication_date \n");
-        sp.append("   ,price             \n");
-        sp.append("   ,amz_bestseller \n");
+        sp.append("   ,first   \n");
+        sp.append("   ,last    \n");
+       // sp.append("   ,publication_date \n");
+       // sp.append("   ,price             \n");
+       // sp.append("   ,amz_bestseller \n");
         sp.append(" from \n");
-        sp.append("   books \n");
+        sp.append("   names \n");
 
         try (
             PreparedStatement stmt
@@ -86,53 +86,53 @@ public class BookHandler {
                 = stmt.executeQuery();
         ) {
             // Loop over results
-            List<Book> books = new LinkedList<>();
+            List<Names> names = new LinkedList<>();
             while (rs.next()) {
-                Book b = new Book();
-                b.setId(rs.getInt(1));
-                b.setTitle(rs.getString(2));
-                b.setAuthor(rs.getString(3));
-                b.setPublicationDate(rs.getDate(4));
-                b.setPrice(rs.getBigDecimal(5));
-                b.setBestSeller(rs.getBoolean(6));
-                books.add(b);
+                Names n = new Names();
+                n.setId(rs.getInt(1));
+                n.setFirst(rs.getString(2));
+                n.setLast(rs.getString(3));
+               // n.setPublicationDate(rs.getDate(4));
+               // n.setPrice(rs.getBigDecimal(5));
+               // n.setBestSeller(rs.getBoolean(6));
+                names.add(n);
             }
-            return books;
+            return names;
         }
     }
 
-    public int insert(Book newBook) throws Exception {
+    public int insert(Names newName) throws Exception {
 
         // PreparedStatement
         StringBuilder sp = new StringBuilder();
-        sp.append(" insert into books ( \n");
+        sp.append(" insert into names ( \n");
         sp.append("    id       \n");
         sp.append("   ,title     \n");
         sp.append("   ,author    \n");
-        sp.append("   ,publication_date \n");
-        sp.append("   ,price             \n");
-        sp.append("   ,amz_bestseller    \n");
+       // sp.append("   ,publication_date \n");
+       // sp.append("   ,price             \n");
+       // sp.append("   ,amz_bestseller    \n");
         sp.append(" ) \n");
         sp.append(" values ( \n");
         sp.append("    ?        \n");
         sp.append("   ,?     \n");
         sp.append("   ,?    \n");
-        sp.append("   ,?  \n");
-        sp.append("   ,?             \n");
-        sp.append("   ,?    \n");
+       // sp.append("   ,?  \n");
+       // sp.append("   ,?             \n");
+       // sp.append("   ,?    \n");
         sp.append(" ) \n");
 
         try (
             PreparedStatement stmt
                 = conn.prepareStatement(sp.toString());
         ) {
-            stmt.setInt(1, newBook.getId());
-            stmt.setString(2, newBook.getTitle());
-            stmt.setString(3, newBook.getAuthor());
-            stmt.setDate(4,
-                new Date(newBook.getPublicationDate().getTime()));
-            stmt.setBigDecimal(5, newBook.getPrice());
-            stmt.setBoolean(6, newBook.getBestSeller());
+            stmt.setInt(1, newName.getId());
+            stmt.setString(2, newName.getFirst());
+            stmt.setString(3, newName.getLast());
+           // stmt.setDate(4,
+           //     new Date(newName.getPublicationDate().getTime()));
+           // stmt.setBigDecimal(5, newName.getPrice());
+           // stmt.setBoolean(6, newBook.getBestSeller());
 
             int insertCount = stmt.executeUpdate();
             return insertCount;
@@ -168,7 +168,7 @@ public class BookHandler {
         // PreparedStatement
         StringBuilder sp = new StringBuilder();
         sp.append(" delete from        \n");
-        sp.append("   books            \n");
+        sp.append("   names            \n");
         sp.append(" where              \n");
         sp.append("   id = ?           \n");
         sp.append(" \n");
