@@ -1,8 +1,5 @@
 package remijan.m.class2.lecture;
 
-import java.math.BigDecimal;
-import java.util.Date;
-
 public class Names {
 
     private Integer id;
