@@ -3,14 +3,11 @@ package remijan.m.class2.lecture;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Book {
+public class Names {
 
     private Integer id;
-    private String title;
-    private String author;
-    private Date publicationDate;
-    private BigDecimal price;
-    private Boolean bestSeller;
+    private String first;
+    private String last;
 
     public Integer getId() {
         return id;
@@ -20,43 +17,19 @@ public class Book {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getFirst() {
+        return first;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setFirst(String first) {
+        this.first = first;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getLast() {
+        return last;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public Date getPublicationDate() {
-        return publicationDate;
-    }
-
-    public void setPublicationDate(Date publicationDate) {
-        this.publicationDate = publicationDate;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public Boolean getBestSeller() {
-        return bestSeller;
-    }
-
-    public void setBestSeller(Boolean bestSeller) {
-        this.bestSeller = bestSeller;
+    public void setLast(String last) {
+        this.last = last;
     }
 }
