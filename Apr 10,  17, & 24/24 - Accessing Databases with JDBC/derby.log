@@ -1,0 +1,17 @@
+----------------------------------------------------------------
+Wed Apr 24 18:24:44 CDT 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance a816c00e-016a-51aa-6bd3-00001de26430 
+on database directory C:\Users\student\Desktop\24 - Accessing Databases with JDBC(3)\24 - Accessing Databases with JDBC\db with class loader sun.misc.Launcher$AppClassLoader@5c647e05 
+Loaded from file:/C:/Users/student/Desktop/24%20-%20Accessing%20Databases%20with%20JDBC(3)/24%20-%20Accessing%20Databases%20with%20JDBC/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_131-b11
+user.dir=C:\Users\student\Desktop\24 - Accessing Databases with JDBC(3)\24 - Accessing Databases with JDBC
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+Wed Apr 24 18:24:45 CDT 2019 Thread[main,5,main] (XID = 165), (SESSIONID = 0), (DATABASE = C:\Users\student\Desktop\24 - Accessing Databases with JDBC(3)\24 - Accessing Databases with JDBC\.\db), (DRDAID = null), Committing
+Wed Apr 24 18:24:45 CDT 2019 Thread[main,5,main] (XID = 165), (SESSIONID = 0), (DATABASE = C:\Users\student\Desktop\24 - Accessing Databases with JDBC(3)\24 - Accessing Databases with JDBC\.\db), (DRDAID = null), Rolling back
+Wed Apr 24 18:24:45 CDT 2019 Thread[main,5,main] (XID = 166), (SESSIONID = 1), (DATABASE = C:\Users\student\Desktop\24 - Accessing Databases with JDBC(3)\24 - Accessing Databases with JDBC\.\db), (DRDAID = null), Committing
+Wed Apr 24 18:24:45 CDT 2019 Thread[main,5,main] (XID = 166), (SESSIONID = 1), (DATABASE = C:\Users\student\Desktop\24 - Accessing Databases with JDBC(3)\24 - Accessing Databases with JDBC\.\db), (DRDAID = null), Rolling back
