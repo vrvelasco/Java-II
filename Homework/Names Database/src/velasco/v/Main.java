@@ -126,7 +126,7 @@ public class Main
 			String[] names = userInput.split(" ");
 			
 	        newPerson.setId(System.currentTimeMillis());
-	        newPerson.setFirstName(names[0]);
+	        newPerson.setFirstName(names[0]);	        
 	        newPerson.setLastName(names.length == 2 ? names[1] : "");
 		}
 		

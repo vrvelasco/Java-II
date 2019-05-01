@@ -139,7 +139,13 @@ public class DatabaseHandler {
                 = conn.prepareStatement(sp.toString());
         ) {
             stmt.setString(1, newName[0]);
-            stmt.setString(2, newName.length == 2 ? newName[1] : "");
+            
+            if (newName.length == 2) {
+            stmt.setString(2, newName.length == 2 ? newName[1] : ""); 
+            } else {
+            	stmt.setNull(2, java.sql.Types.VARCHAR);
+            }
+            
             stmt.setLong(3, id);
             
             updateCount = stmt.executeUpdate();
