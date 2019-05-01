@@ -90,16 +90,20 @@ public class Main
      			System.out.print("Enter first and last name (\".\" when done): ");
      			String newName = input.nextLine().trim();
      			
-     			int updateCount = dbHandler.updateName(id, newName);
+     			if (!newName.equals("."))
+     			{
+     				int updateCount = dbHandler.updateName(id, newName);
      			
-     			if (updateCount > 0)
-     			{
-     				System.out.printf("> Updated! ID = %d%n", id);
+     				if (updateCount > 0)
+     				{
+     					System.out.printf("> Updated! ID = %d%n", id);
+     				}
+     				else
+     				{
+     					System.out.printf("> FAIL! ID = %d not found%n", id);
+     				}     		
      			}
-     			else
-     			{
-     				System.out.printf("> FAIL! ID = %d not found%n", id);
-     			}     		}
+     		}
      		
      		catch (NumberFormatException e) { /* Eclipse requires catch to run */ }
      		
