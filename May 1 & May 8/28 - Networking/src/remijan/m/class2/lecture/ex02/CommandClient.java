@@ -14,7 +14,7 @@ public class CommandClient {
         System.out.printf("CLIENT: CommandClient I've started%n");
 
         System.out.printf("CLIENT: Creating my socket%n");
-        Socket socket = new Socket("localhost", 12727);
+        Socket socket = new Socket("10.30.11.3", 12727);
 
         // Create Reader and Writer
         Scanner fromServer = new Scanner(socket.getInputStream());
